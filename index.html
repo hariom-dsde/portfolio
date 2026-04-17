@@ -1,80 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hariom Gupta - Resume</title>
-    <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; max-width: 800px; }
-        h1, h2, h3 { color: #2c3e50; }
-        a { color: #2980b9; text-decoration: none; }
-        section { margin-bottom: 30px; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hariom Gupta | Insane Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+:root{--accent:#00ffd5;--bg1:#0f2027;--bg2:#203a43;--bg3:#2c5364}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Poppins',sans-serif;color:#fff;background:linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));overflow-x:hidden}
+
+#bg{position:fixed;inset:0;z-index:-1}
+
+.container{max-width:1100px;margin:auto;padding:20px}
+header{text-align:center;padding:80px 20px}
+header h1{font-size:3rem;margin:0}
+header h2{font-weight:300;color:var(--accent);min-height:28px}
+
+.card{background:rgba(255,255,255,0.06);backdrop-filter:blur(12px);padding:20px;border-radius:18px;margin-bottom:20px;transition:.3s}
+.card:hover{transform:translateY(-8px);background:rgba(255,255,255,0.12)}
+
+h2{border-left:4px solid var(--accent);padding-left:10px}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+
+.project{position:relative;overflow:hidden}
+.project::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent,rgba(0,0,0,.7));opacity:0;transition:.3s}
+.project:hover::after{opacity:1}
+
+.project h3{margin-top:0}
+
+.btn{display:inline-block;margin-top:10px;padding:8px 14px;border-radius:8px;background:var(--accent);color:#000;font-weight:600}
+
+footer{text-align:center;opacity:.6;padding:20px}
+
+.toggle{position:fixed;top:20px;right:20px;cursor:pointer;background:#fff;color:#000;padding:8px 12px;border-radius:10px;font-size:.8rem}
+
+.light{--bg1:#f5f7fa;--bg2:#c3cfe2;--bg3:#e2ebf0;color:#000}
+.light .card{background:rgba(0,0,0,0.05)}
+.light a{color:#0077ff}
+
+a{color:var(--accent);text-decoration:none}
+</style>
 </head>
+
 <body>
-    <h1>Hariom Gupta</h1>
-    <p>
-        <strong>Email:</strong> <a href="mailto:guptaom244@gmail.com">guptaom244@gmail.com</a> <br>
-        <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/hariom-gupta-3b38421b8/">Hariom Gupta</a> <br>
-        <strong>GitHub:</strong> <a href="https://github.com/hariom-dsde">hariom-dsde</a> <br>
-        <strong>Portfolio:</strong> <a href="https://www.datascienceportfol.io/Hariom_Gupta">Data Science Portfolio</a> <br>
-        <strong>Google Developer Profile:</strong> <a href="https://g.dev/hariom-dsde">g.dev/hariom-dsde</a> <br>
-        <strong>Phone:</strong> +91-6394969055
-    </p>
+<canvas id="bg"></canvas>
+<div class="toggle" onclick="toggleTheme()">Toggle Mode</div>
 
-    <section>
-        <h2>Internship Experience</h2>
-        <h3>Ministry of Micro, Small and Medium Enterprises (PPDC)</h3>
-        <p><strong>Role:</strong> Data Analytics & Machine Learning Intern (Oct 2023 – Nov 2023)</p>
-        <ul>
-            <li>Conducted data cleaning, EDA, and feature engineering.</li>
-            <li>Built and optimized ML models for business insights.</li>
-        </ul>
-        <h3>British Airways</h3>
-        <p><strong>Role:</strong> Data Science Job Simulation (Aug 2023 – Sept 2023)</p>
-        <ul>
-            <li>Performed web scraping for insights.</li>
-            <li>Used advanced analytics to predict customer buying behavior.</li>
-        </ul>
-    </section>
+<div class="container">
+<header>
+  <h1>Hariom Gupta</h1>
+  <h2 id="typing"></h2>
+</header>
 
-    <section>
-        <h2>Education</h2>
-        <ul>
-            <li><strong>Rajkumar Goel Institute of Technology</strong> (2020–2024) – B.Tech in Computer Science & Data Science, CGPA: 7.4</li>
-            <li><strong>D.A.V. Inter College</strong> (2018–2020) – Intermediate (PCM), 74.8%</li>
-            <li><strong>S.S. Niketan High School</strong> (2016–2018) – High School (Science), 77.8%</li>
-        </ul>
-    </section>
+<div class="card">
+  <h2>About Me</h2>
+  <p>Developer & Data Scientist building impactful tech. Skilled in Machine Learning, Data Analysis, and creating intuitive applications. Passionate about solving real-world problems with data.</p>
+</div>
 
-    <section>
-        <h2>Skills</h2>
-        <p><strong>Languages:</strong> Python, C, R</p>
-        <p><strong>Libraries/Frameworks:</strong> FASTAPI, Flutter, Pandas, NumPy</p>
-        <p><strong>Big Data & Cloud:</strong> AWS (Data Analytics)</p>
-    </section>
+<div class="card">
+  <h2>Experience</h2>
+  <p><strong>Data Analytics & Machine Learning Intern</strong> – MSME PPDC Chennai</p>
+  <ul>
+    <li>Data Cleaning, EDA & Feature Engineering</li>
+    <li>Built ML models for insights</li>
+  </ul>
+  <p><strong>Data Science Simulation</strong> – British Airways</p>
+  <ul>
+    <li>Web scraping & analytics</li>
+    <li>Customer behavior prediction</li>
+  </ul>
+</div>
 
-    <section>
-        <h2>Projects</h2>
-        <ul>
-            <li><strong>Fake News Prediction</strong> – Built a logistic regression model to classify misinformation (Python, Scikit-learn, Pandas, NumPy, NLTK)</li>
-            <li><strong>Flipkart Website Data Scraping</strong> – Extracted product data for market analysis (BeautifulSoup, Pandas, CSV)</li>
-            <li><strong>House Price Prediction</strong> – Applied regression techniques for accurate predictions (Python, NumPy, Pandas, Matplotlib, Seaborn, XGBoost)</li>
-            <li><strong>Penguin Slate</strong> – Developed an educational platform for kids with interactive content</li>
-            <li><strong>PopMe</strong> – Built a pop-culture news aggregator and sharing app</li>
-        </ul>
-    </section>
+<div class="card">
+  <h2>Projects</h2>
+  <div class="grid">
+    <div class="card project">
+      <h3>Fake News Detection</h3>
+      <p>Logistic Regression model to classify misinformation.</p>
+    </div>
+    <div class="card project">
+      <h3>Flipkart Web Scraper</h3>
+      <p>Extracted and analyzed product data using Python.</p>
+    </div>
+    <div class="card project">
+      <h3>House Price Prediction</h3>
+      <p>Advanced regression using XGBoost for accurate pricing.</p>
+    </div>
+    <div class="card project">
+      <h3>Penguin Slate</h3>
+      <p>Minimal whiteboard app for creativity.</p>
+    </div>
+    <div class="card project">
+      <h3>PopMe</h3>
+      <p>Pop culture news aggregator app.</p>
+    </div>
+  </div>
+</div>
 
-    <section>
-        <h2>Certifications</h2>
-        <ul>
-            <li><strong>Research Paper:</strong> “Physical and Mental Health Care Website” – IJRR (July 2024)</li>
-            <li><strong>Big Data Technologies</strong> – CDAC (Feb–June 2023)</li>
-            <li><strong>Data Analysis with R Programming</strong> – Coursera (March 2023)</li>
-            <li><strong>Hadoop: Map Reduce</strong> – Great Learning (Jan 2023)</li>
-            <li><strong>Unsupervised ML with K-means</strong> – Great Learning (Jan 2023)</li>
-            <li><strong>Data Analytics on AWS</strong> – Coursera (June 2022)</li>
-        </ul>
-    </section>
+<div class="card">
+  <h2>Skills</h2>
+  <p>Python | Machine Learning | Data Analysis | FastAPI | Flutter | Firebase | AWS</p>
+</div>
+
+<div class="card">
+  <h2>Education</h2>
+  <p>B.Tech in Computer Science (Data Science) – 2020-2024</p>
+</div>
+
+<div class="card">
+  <h2>Contact</h2>
+  <p>Email: <a href="mailto:guptaom244@gmail.com">guptaom244@gmail.com</a></p>
+  <p>LinkedIn: <a href="https://www.linkedin.com/in/hariom-gupta-3b38421b8/">Profile</a></p>
+  <p>GitHub: <a href="https://github.com/hariom-dsde">hariom-dsde</a></p>
+  <p>Portfolio: <a href="https://www.datascienceportfol.io/Hariom_Gupta">Visit</a></p>
+</div>
+
+<footer>
+  <p>© 2026 Hariom Gupta</p>
+</footer>
+</div>
+
+<script>
+const text=["Developer","Data Scientist","ML Engineer","Problem Solver"];
+let i=0,j=0,current="",isDeleting=false;
+function type(){
+  current=text[i];
+  if(isDeleting){j--;} else{j++;}
+  document.getElementById("typing").innerText=current.substring(0,j);
+  if(!isDeleting && j===current.length){isDeleting=true;setTimeout(type,1000);return}
+  if(isDeleting && j===0){isDeleting=false;i=(i+1)%text.length}
+  setTimeout(type,isDeleting?50:100);
+}
+type();
+
+const canvas=document.getElementById('bg');
+const ctx=canvas.getContext('2d');
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+let particles=[];
+for(let i=0;i<120;i++){
+  particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2,vx:Math.random()-0.5,vy:Math.random()-0.5});
+}
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p=>{
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle='#00ffd5';
+    ctx.fill();
+    p.x+=p.vx; p.y+=p.vy;
+    if(p.x<0||p.x>canvas.width) p.vx*=-1;
+    if(p.y<0||p.y>canvas.height) p.vy*=-1;
+  });
+  requestAnimationFrame(draw);
+}
+draw();
+
+function toggleTheme(){document.body.classList.toggle('light')}
+</script>
+
 </body>
 </html>
