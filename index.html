@@ -9,9 +9,11 @@
     --text-main: #222222;
     --text-muted: #555555;
     --link-color: #0056b3;
-    --border-color: #cccccc;
+    --border-color: #e0e0e0;
     --bg-main: #f4f4f6;
     --bg-paper: #ffffff;
+    --btn-bg: #f8f9fa;
+    --btn-border: #dcdcdc;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -25,16 +27,17 @@
   }
 
   .resume-container {
-    max-width: 850px;
+    max-width: 900px;
     margin: 0 auto;
     background: var(--bg-paper);
     padding: 50px 60px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     border-radius: 4px;
+    overflow: hidden;
   }
 
   /* Header & Contact */
-  header { text-align: center; margin-bottom: 25px; }
+  header { text-align: center; margin-bottom: 30px; }
   h1 { font-size: 2.2rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; color: #000; }
   .contact-info { font-size: 0.95rem; color: var(--text-muted); }
   .contact-info a { color: var(--link-color); text-decoration: none; margin: 0 8px; }
@@ -42,26 +45,102 @@
   .contact-separator { margin: 0 5px; color: #aaa; }
 
   /* Section Styling */
-  section { margin-bottom: 25px; }
+  section { margin-bottom: 30px; }
   h2 {
     font-size: 1.1rem;
     text-transform: uppercase;
     color: var(--text-main);
     border-bottom: 1px solid var(--text-main);
     padding-bottom: 4px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     letter-spacing: 0.5px;
   }
 
-  /* Text & Lists */
   p { margin-bottom: 10px; font-size: 0.95rem; }
-  ul { padding-left: 20px; font-size: 0.95rem; color: var(--text-main); }
-  li { margin-bottom: 5px; }
-  
+  ul { padding-left: 20px; font-size: 0.9rem; color: var(--text-main); }
+  li { margin-bottom: 6px; }
   .strong { font-weight: 600; }
-  .italic { font-style: italic; }
 
-  /* Experience & Education Items */
+  /* Auto-Scrolling Projects Carousel */
+  .carousel-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 5px 0 15px 0;
+  }
+  
+  .carousel-track {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    /* 35s controls the speed of the scroll */
+    animation: scroll 35s linear infinite; 
+  }
+
+  /* Pauses animation when user hovers */
+  .carousel-container:hover .carousel-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    /* Shifts exactly half the track to create a seamless infinite loop with duplicated content */
+    100% { transform: translateX(calc(-50% - 10px)); }
+  }
+
+  .project-card {
+    width: 400px;
+    min-height: 280px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    white-space: normal;
+  }
+
+  .project-name { font-weight: 600; color: #000; font-size: 1.05rem; margin-bottom: 12px; }
+  .project-details { flex-grow: 1; }
+
+  /* Project Action Buttons */
+  .project-links {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .btn-link {
+    flex: 1;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid var(--btn-border);
+    color: var(--text-main);
+    background: var(--btn-bg);
+    transition: all 0.2s ease;
+  }
+
+  .btn-link:hover {
+    background: var(--link-color);
+    color: #fff;
+    border-color: var(--link-color);
+  }
+
+  /* Grids & Lists for other sections */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px 30px;
+    font-size: 0.95rem;
+  }
+
   .item-header {
     display: flex;
     justify-content: space-between;
@@ -72,35 +151,11 @@
   .item-date { font-size: 0.9rem; color: var(--text-muted); font-weight: 600; }
   .item-subtitle { font-style: italic; font-size: 0.95rem; margin-bottom: 8px; color: var(--text-muted); }
 
-  /* Clickable Projects */
-  a.project-link {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-    padding: 10px;
-    margin-left: -10px;
-    border-left: 3px solid transparent;
-    transition: background-color 0.2s, border-left-color 0.2s;
-  }
-  a.project-link:hover {
-    background-color: #f8f9fa;
-    border-left-color: var(--link-color);
-  }
-  .project-name { font-weight: 600; color: #000; font-size: 1rem; }
-
-  /* Grids */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px 30px;
-    font-size: 0.95rem;
-  }
-
-  /* Responsive Design */
-  @media (max-width: 600px) {
+  @media (max-width: 768px) {
     .resume-container { padding: 30px 20px; }
     .item-header { flex-direction: column; }
     .skills-grid { grid-template-columns: 1fr; }
+    .project-card { width: 320px; }
   }
 </style>
 </head>
@@ -108,7 +163,6 @@
 
 <div class="resume-container">
   
-  <!-- HEADER SECTION -->
   <header>
     <h1>Hariom Gupta</h1>
     <div class="contact-info">
@@ -118,57 +172,145 @@
     </div>
   </header>
 
-  <!-- OBJECTIVE SECTION -->
   <section>
     <h2>Objective</h2>
     <p>Looking for an internship or Job to gain industrial experience and training. Excited to work with professionals and to learn new work ethics.</p>
   </section>
 
-  <!-- PROJECTS SECTION -->
+  <!-- AUTO-SCROLLING PROJECTS SECTION -->
   <section>
     <h2>Projects</h2>
+    <div class="carousel-container">
+      <div class="carousel-track">
+        
+        <!-- PROJECT SET 1 (Original) -->
+        <div class="project-card">
+          <div class="project-name">Automated Environmental Data Lake & Dashboard</div>
+          <div class="project-details">
+            <ul>
+              <li>Designed and implemented a Medallion Data Lake architecture.</li>
+              <li>Built and automated the API data ingestion pipeline using GitHub Actions.</li>
+              <li>Created an end-to-end ETL workflow for data cleaning and aggregation.</li>
+              <li>Developed a reactive frontend dashboard using Streamlit and Plotly.</li>
+            </ul>
+          </div>
+          <div class="project-links">
+            <a href="#" target="_blank" class="btn-link">GitHub</a>
+            <a href="#" target="_blank" class="btn-link">Live Link</a>
+          </div>
+        </div>
 
-    <a href="YOUR_LINK_HERE" target="_blank" class="project-link">
-      <div class="project-name">Automated Environmental Data Lake & Telemetry Dashboard</div>
-      <ul>
-        <li>Designed and implemented a Medallion Data Lake architecture.</li>
-        <li>Built and automated the API data ingestion pipeline using GitHub Actions.</li>
-        <li>Created an end-to-end ETL workflow for data cleaning and aggregation.</li>
-        <li>Developed a reactive frontend dashboard using Streamlit and Plotly.</li>
-        <li>Integrated live cloud data for real-time environmental monitoring.</li>
-      </ul>
-    </a>
+        <div class="project-card">
+          <div class="project-name">Real-Time Sentiment Analysis Dashboard</div>
+          <div class="project-details">
+            <ul>
+              <li>Designed and implemented the NLP preprocessing workflow.</li>
+              <li>Built and optimized the sentiment classification model.</li>
+              <li>Created an end-to-end ML pipeline for training and prediction.</li>
+              <li>Evaluated model performance using accuracy, precision, recall, and F1-score.</li>
+            </ul>
+          </div>
+          <div class="project-links">
+            <a href="#" target="_blank" class="btn-link">GitHub</a>
+            <a href="#" target="_blank" class="btn-link">Live Link</a>
+          </div>
+        </div>
 
-    <a href="YOUR_LINK_HERE" target="_blank" class="project-link">
-      <div class="project-name">Real-Time Sentiment Analysis Dashboard</div>
-      <ul>
-        <li>Designed and implemented the NLP preprocessing workflow.</li>
-        <li>Built and optimized the sentiment classification model.</li>
-        <li>Created an end-to-end ML pipeline for training and prediction.</li>
-        <li>Evaluated model performance using accuracy, precision, recall, and F1-score.</li>
-        <li>Integrated model outputs with the dashboard for real-time sentiment monitoring.</li>
-      </ul>
-    </a>
+        <div class="project-card">
+          <div class="project-name">Fake News Prediction</div>
+          <div class="project-details">
+            <ul>
+              <li>Developed a ML based fake news prediction model using logistic regression for accurate misinformation detection.</li>
+              <li>Achieved robust fake news classification with a logistic regression approach in Python.</li>
+              <li>Used libraries like pandas, numpy, scikit-learn, nltk.</li>
+            </ul>
+          </div>
+          <div class="project-links">
+            <a href="#" target="_blank" class="btn-link">GitHub</a>
+            <a href="#" target="_blank" class="btn-link">Live Link</a>
+          </div>
+        </div>
 
-    <a href="YOUR_LINK_HERE" target="_blank" class="project-link">
-      <div class="project-name">Fake News Prediction</div>
-      <ul>
-        <li>Developed a ML based fake news prediction model using logistic regression for accurate misinformation detection.</li>
-        <li>Achieved robust fake news classification with a logistic regression approach in Python.</li>
-        <li>Used libraries like pandas, numpy, scikit-learn, nltk.</li>
-      </ul>
-    </a>
+        <div class="project-card">
+          <div class="project-name">House Price Prediction (Kaggle)</div>
+          <div class="project-details">
+            <ul>
+              <li>Developed a Python-based house price prediction model leveraging NumPy, Pandas, Matplotlib, Seaborn, and XGBoost.</li>
+              <li>Implemented model persistence using Pickle to enable easy storage and retrieval of trained models.</li>
+            </ul>
+          </div>
+          <div class="project-links">
+            <a href="#" target="_blank" class="btn-link">GitHub</a>
+            <a href="#" target="_blank" class="btn-link">Live Link</a>
+          </div>
+        </div>
 
-    <a href="YOUR_LINK_HERE" target="_blank" class="project-link">
-      <div class="project-name">Kaggle Competition (House Price Prediction)</div>
-      <ul>
-        <li>Developed a Python-based house price prediction model leveraging NumPy, Pandas, Matplotlib, Seaborn, and XGBoost.</li>
-        <li>Implemented model persistence using Pickle to enable easy storage and retrieval of trained models.</li>
-      </ul>
-    </a>
+        <!-- PROJECT SET 2 (Duplicated for seamless infinite scrolling loop) -->
+        <div class="project-card">
+          <div class="project-name">Automated Environmental Data Lake & Dashboard</div>
+          <div class="project-details">
+            <ul>
+              <li>Designed and implemented a Medallion Data Lake architecture.</li>
+              <li>Built and automated the API data ingestion pipeline using GitHub Actions.</li>
+              <li>Created an end-to-end ETL workflow for data cleaning and aggregation.</li>
+              <li>Developed a reactive frontend dashboard using Streamlit and Plotly.</li>
+            </ul>
+          </div>
+          <div class="project-links">
+            <a href="#" target="_blank" class="btn-link">GitHub</a>
+            <a href="#" target="_blank" class="btn-link">Live Link</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-name">Real-Time Sentiment Analysis Dashboard</div>
+          <div class="project-details">
+            <ul>
+              <li>Designed and implemented the NLP preprocessing workflow.</li>
+              <li>Built and optimized the sentiment classification model.</li>
+              <li>Created an end-to-end ML pipeline for training and prediction.</li>
+              <li>Evaluated model performance using accuracy, precision, recall, and F1-score.</li>
+            </ul>
+          </div>
+          <div class="project-links">
+            <a href="#" target="_blank" class="btn-link">GitHub</a>
+            <a href="#" target="_blank" class="btn-link">Live Link</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-name">Fake News Prediction</div>
+          <div class="project-details">
+            <ul>
+              <li>Developed a ML based fake news prediction model using logistic regression for accurate misinformation detection.</li>
+              <li>Achieved robust fake news classification with a logistic regression approach in Python.</li>
+              <li>Used libraries like pandas, numpy, scikit-learn, nltk.</li>
+            </ul>
+          </div>
+          <div class="project-links">
+            <a href="#" target="_blank" class="btn-link">GitHub</a>
+            <a href="#" target="_blank" class="btn-link">Live Link</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-name">House Price Prediction (Kaggle)</div>
+          <div class="project-details">
+            <ul>
+              <li>Developed a Python-based house price prediction model leveraging NumPy, Pandas, Matplotlib, Seaborn, and XGBoost.</li>
+              <li>Implemented model persistence using Pickle to enable easy storage and retrieval of trained models.</li>
+            </ul>
+          </div>
+          <div class="project-links">
+            <a href="#" target="_blank" class="btn-link">GitHub</a>
+            <a href="#" target="_blank" class="btn-link">Live Link</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </section>
 
-  <!-- SKILLS SECTION -->
   <section>
     <h2>Skills</h2>
     <div class="skills-grid">
@@ -195,7 +337,6 @@
     </div>
   </section>
 
-  <!-- TRAINING & CERTIFICATIONS SECTION -->
   <section>
     <h2>Training & Certifications</h2>
     <ul>
@@ -207,7 +348,6 @@
     </ul>
   </section>
 
-  <!-- EDUCATION SECTION -->
   <section>
     <h2>Education</h2>
     
