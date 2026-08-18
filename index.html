@@ -19,116 +19,7 @@
     --card-hover: rgba(255, 255, 255, 0.15);
   }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: 'Poppins', sans-serif;
-    color: var(--text-main);
-    background: linear-gradient(135deg, var(--bg1), var(--bg2), var(--bg3));
-    background-attachment: fixed;
-    overflow-x: hidden;
-    line-height: 1.6;
-  }
-
-  #bg { position: fixed; inset: 0; z-index: -1; }
-
-  .container { max-width: 1100px; margin: auto; padding: 20px; padding-bottom: 60px; }
-  
-  header { text-align: center; padding: 100px 20px 60px; }
-  header h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 10px; letter-spacing: 1px; }
-  header h2 { font-weight: 400; color: var(--accent); min-height: 36px; font-size: 1.5rem; }
-
-  h2.section-title {
-    border-left: 4px solid var(--accent);
-    padding-left: 15px;
-    margin-bottom: 15px;
-    font-size: 1.8rem;
-  }
-
-  .card {
-    background: var(--card-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 30px;
-    border-radius: 20px;
-    margin-bottom: 30px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-    transition: all 0.4s ease;
-  }
-
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-    margin-top: 20px;
-  }
-
-  /* Clickable Project Cards */
-  a.project-link { text-decoration: none; color: inherit; display: block; }
-  
-  .project {
-    position: relative;
-    height: 100%;
-    cursor: pointer;
-    background: var(--card-bg);
-    padding: 25px;
-    border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .project:hover {
-    transform: translateY(-8px);
-    background: var(--card-hover);
-    border-color: var(--accent);
-    box-shadow: 0 10px 30px rgba(0, 255, 213, 0.15);
-  }
-
-  .project h3 { margin-bottom: 10px; font-size: 1.3rem; color: var(--text-main); }
-  .project p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 15px; }
-  
-  .project-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: 600;
-    color: var(--accent);
-    font-size: 0.9rem;
-  }
-  
-  .project-footer span { transition: transform 0.3s ease; }
-  .project:hover .project-footer span { transform: translateX(5px); }
-
-  ul { margin-left: 20px; margin-bottom: 15px; color: var(--text-muted); }
-  li { margin-bottom: 5px; }
-
-  .skills-container { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
-  .skill-badge {
-    background: rgba(0, 255, 213, 0.1);
-    color: var(--accent);
-    padding: 8px 16px;
-    border-radius: 30px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    border: 1px solid rgba(0, 255, 213, 0.3);
-  }
-
-  footer { text-align: center; opacity: 0.6; padding: 20px; margin-top: 40px; }
-
-  .toggle {
-    position: fixed; top: 20px; right: 20px; cursor: pointer;
-    background: rgba(255, 255, 255, 0.1); color: var(--text-main);
-    padding: 10px 16px; border-radius: 30px; font-size: 0.9rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px); transition: 0.3s; z-index: 100;
-  }
-  .toggle:hover { background: var(--accent); color: #000; border-color: var(--accent); }
-
-  /* Light Theme */
+  /* Light Theme Variables */
   .light {
     --bg1: #e0c3fc;
     --bg2: #8ec5fc;
@@ -139,14 +30,143 @@
     --card-hover: rgba(255, 255, 255, 0.6);
     --accent: #0066cc;
   }
-  .light .toggle { background: #fff; color: #000; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-main);
+    background: linear-gradient(135deg, var(--bg1), var(--bg2), var(--bg3));
+    background-attachment: fixed;
+    line-height: 1.6;
+    overflow: hidden; /* Prevents body scrolling */
+  }
+
+  #bg { position: fixed; inset: 0; z-index: -1; }
+
+  /* Full Page Snap Scrolling Setup */
+  .scroll-container {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    scroll-behavior: smooth;
+  }
+  .scroll-container::-webkit-scrollbar { display: none; /* Chrome/Safari */ }
+
+  section {
+    height: 100vh;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 5%;
+    position: relative;
+  }
+
+  .content-wrapper {
+    max-width: 1100px;
+    width: 100%;
+  }
+
+  /* Typography & Headers */
+  h1 { font-size: 4rem; font-weight: 700; margin-bottom: 10px; letter-spacing: 1px; text-align: center; }
+  h2.subtitle { font-weight: 400; color: var(--accent); font-size: 1.8rem; text-align: center; min-height: 45px;}
+  h2.section-title { border-left: 4px solid var(--accent); padding-left: 15px; margin-bottom: 25px; font-size: 2.2rem; }
+
+  /* Glassmorphism Cards */
+  .card {
+    background: var(--card-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+  }
+
+  /* Horizontal Scrolling for Projects */
+  .projects-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 20px;
+    padding: 10px 5px 30px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) transparent;
+  }
+  .projects-carousel::-webkit-scrollbar { height: 8px; }
+  .projects-carousel::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+
+  a.project-link { text-decoration: none; color: inherit; display: block; flex: 0 0 320px; scroll-snap-align: center;}
+  
+  .project {
+    height: 280px;
+    cursor: pointer;
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .project:hover {
+    transform: translateY(-8px);
+    background: var(--card-hover);
+    border-color: var(--accent);
+    box-shadow: 0 10px 30px rgba(0, 255, 213, 0.15);
+  }
+  .project h3 { font-size: 1.3rem; color: var(--text-main); margin-bottom: 10px;}
+  .project p { color: var(--text-muted); font-size: 0.95rem; }
+  .project-footer { font-weight: 600; color: var(--accent); font-size: 0.9rem; display: flex; justify-content: space-between;}
+  .project:hover .project-footer span { transform: translateX(5px); transition: transform 0.3s; }
+
+  /* Skills Badges */
+  .skills-container { display: flex; flex-wrap: wrap; gap: 12px; }
+  .skill-badge {
+    background: rgba(0, 255, 213, 0.1);
+    color: var(--accent);
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: 1px solid rgba(0, 255, 213, 0.3);
+  }
   .light .skill-badge { background: rgba(0, 102, 204, 0.1); color: var(--accent); border-color: rgba(0, 102, 204, 0.3); }
 
-  a.social-link {
-    color: var(--accent); text-decoration: none;
-    font-weight: 600; margin-right: 15px;
-    transition: opacity 0.3s;
+  /* Grid Layouts for Sections */
+  .split-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  @media(max-width: 768px) { .split-grid { grid-template-columns: 1fr; } h1 { font-size: 2.5rem; } }
+
+  /* Animations */
+  .hidden { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+  .show { opacity: 1; transform: translateY(0); }
+  .delay-1 { transition-delay: 0.2s; }
+  .delay-2 { transition-delay: 0.4s; }
+
+  /* UI Elements */
+  .toggle {
+    position: fixed; top: 20px; right: 20px; cursor: pointer;
+    background: rgba(255, 255, 255, 0.1); color: var(--text-main);
+    padding: 10px 16px; border-radius: 30px; font-size: 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); z-index: 100; transition: 0.3s;
   }
+  .toggle:hover { background: var(--accent); color: #000; border-color: var(--accent); }
+  .light .toggle { background: #fff; color: #000; }
+
+  .scroll-indicator {
+    position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+    font-size: 0.9rem; color: var(--text-muted); text-align: center;
+    animation: bounce 2s infinite; opacity: 0.7;
+  }
+  @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); } 40% { transform: translateY(-10px) translateX(-50%); } 60% { transform: translateY(-5px) translateX(-50%); } }
+  
+  a.social-link { color: var(--accent); text-decoration: none; font-weight: 600; font-size: 1.1rem; margin-right: 15px; transition: opacity 0.3s; }
   a.social-link:hover { opacity: 0.7; }
 </style>
 </head>
@@ -155,99 +175,167 @@
 <canvas id="bg"></canvas>
 <div class="toggle" onclick="toggleTheme()">🌓 Toggle Mode</div>
 
-<div class="container">
-  <header>
-    <h1>Hariom Gupta</h1>
-    <h2 id="typing"></h2>
-  </header>
-
-  <div class="card">
-    <h2 class="section-title">Objective</h2>
-    <p>Looking for an internship or job to gain industrial experience and training. Excited to work with professionals, learn new work ethics, and solve real-world problems with data.</p>
-  </div>
-
-  <div class="card">
-    <h2 class="section-title">Projects</h2>
-    <div class="grid">
-      
-      <!-- Wrap the entire card in an <a> tag to make it fully clickable -->
-      <a href="YOUR_LINK_HERE" target="_blank" class="project-link">
-        <div class="project">
-          <div>
-            <h3>Automated Environmental Data Lake</h3>
-            <p>Designed a Medallion Data Lake architecture. Built an automated API data ingestion pipeline using GitHub Actions and created an end-to-end ETL workflow with a Streamlit dashboard.</p>
-          </div>
-          <div class="project-footer">View Project <span>→</span></div>
-        </div>
-      </a>
-
-      <a href="YOUR_LINK_HERE" target="_blank" class="project-link">
-        <div class="project">
-          <div>
-            <h3>Real-Time Sentiment Analysis</h3>
-            <p>Designed an NLP preprocessing workflow and optimized a sentiment classification model. Created an end-to-end ML pipeline for training and prediction with real-time monitoring.</p>
-          </div>
-          <div class="project-footer">View Project <span>→</span></div>
-        </div>
-      </a>
-
-      <a href="YOUR_LINK_HERE" target="_blank" class="project-link">
-        <div class="project">
-          <div>
-            <h3>Fake News Prediction</h3>
-            <p>Developed an ML-based fake news prediction model using logistic regression for accurate misinformation detection using pandas, NumPy, scikit-learn, and NLTK.</p>
-          </div>
-          <div class="project-footer">View Project <span>→</span></div>
-        </div>
-      </a>
-
-      <a href="YOUR_LINK_HERE" target="_blank" class="project-link">
-        <div class="project">
-          <div>
-            <h3>House Price Prediction</h3>
-            <p>Kaggle competition project utilizing advanced regression techniques with XGBoost for robust data analysis, visualization, and machine learning.</p>
-          </div>
-          <div class="project-footer">View Project <span>→</span></div>
-        </div>
-      </a>
-
+<div class="scroll-container">
+  
+  <!-- SECTION 1: Hero -->
+  <section>
+    <div class="content-wrapper hidden">
+      <h1>Hariom Gupta</h1>
+      <h2 class="subtitle" id="typing"></h2>
     </div>
-  </div>
+    <div class="scroll-indicator">Scroll Down ↓</div>
+  </section>
 
-  <div class="card">
-    <h2 class="section-title">Technical Skills</h2>
-    <div class="skills-container">
-      <div class="skill-badge">Python</div>
-      <div class="skill-badge">Core JAVA</div>
-      <div class="skill-badge">Machine Learning</div>
-      <div class="skill-badge">Data Visualization</div>
-      <div class="skill-badge">SQL</div>
-      <div class="skill-badge">MongoDB</div>
-      <div class="skill-badge">AWS</div>
-      <div class="skill-badge">Tableau</div>
-      <div class="skill-badge">Git & JIRA</div>
+  <!-- SECTION 2: About & Experience -->
+  <section>
+    <div class="content-wrapper split-grid">
+      <div class="card hidden delay-1">
+        <h2 class="section-title">Objective</h2>
+        <p>Looking for an internship or job to gain industrial experience and training. Excited to work with professionals, learn new work ethics, and solve real-world problems with data.</p>
+        
+        <h2 class="section-title" style="margin-top: 30px;">Education</h2>
+        <ul style="margin-left: 20px; color: var(--text-muted);">
+          <li><strong>PG Cert in Big Data Technologies</strong> – CDAC (2026)</li>
+          <li><strong>B.Tech in CSE (Data Science)</strong> – RKGIT (2020-2024) | 7.4 CGPA</li>
+        </ul>
+      </div>
+
+      <div class="card hidden delay-2">
+        <h2 class="section-title">Experience</h2>
+        <p style="color: var(--accent); font-weight: 600;">Data Analytics & Machine Learning Intern</p>
+        <p style="margin-bottom: 15px;">MSME PPDC Chennai</p>
+        <ul style="margin-left: 20px; color: var(--text-muted);">
+          <li>Performed Data Cleaning, EDA & Feature Engineering.</li>
+          <li>Built scalable ML models for actionable insights.</li>
+        </ul>
+
+        <p style="color: var(--accent); font-weight: 600; margin-top: 20px;">Data Science Simulation</p>
+        <p style="margin-bottom: 15px;">British Airways</p>
+        <ul style="margin-left: 20px; color: var(--text-muted);">
+          <li>Conducted web scraping and predictive analytics.</li>
+          <li>Analyzed customer behavior for strategic modeling.</li>
+        </ul>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="card">
-    <h2 class="section-title">Education & Certifications</h2>
-    <ul>
-      <li><strong>Post Graduation Certificate in Big Data Technologies</strong> – CDAC Bengaluru (Feb 2026 - Aug 2026)</li>
-      <li><strong>B.Tech in CSE (Data Science)</strong> – RKGIT, Ghaziabad (2020 - 2024) | 7.4 CGPA</li>
-      <li><strong>Data Analytics with AWS</strong> – Coursera</li>
-      <li><strong>Data Analysis With R programming</strong> – Coursera</li>
-    </ul>
-  </div>
+  <!-- SECTION 3: Projects (Horizontal Scroll) -->
+  <section>
+    <div class="content-wrapper">
+      <h2 class="section-title hidden">Featured Projects</h2>
+      <div class="projects-carousel hidden delay-1">
+        
+        <a href="YOUR_LINK_HERE" target="_blank" class="project-link">
+          <div class="project">
+            <div>
+              <h3>Automated Data Lake</h3>
+              <p>Medallion Data Lake architecture. Automated API ingestion via GitHub Actions & Streamlit dashboard.</p>
+            </div>
+            <div class="project-footer">View Project <span>→</span></div>
+          </div>
+        </a>
 
-  <div class="card">
-    <h2 class="section-title">Connect</h2>
-    <p style="margin-bottom: 10px;">Email: <a href="mailto:guptaom244@gmail.com" class="social-link">guptaom244@gmail.com</a></p>
-    <p style="margin-bottom: 10px;">GitHub: <a href="https://github.com/MrHariomGupta-08" target="_blank" class="social-link">github.com/MrHariomGupta-08</a></p>
-  </div>
+        <a href="YOUR_LINK_HERE" target="_blank" class="project-link">
+          <div class="project">
+            <div>
+              <h3>Real-Time Sentiment Analysis</h3>
+              <p>NLP preprocessing workflow & optimized sentiment classification model with an end-to-end ML pipeline.</p>
+            </div>
+            <div class="project-footer">View Project <span>→</span></div>
+          </div>
+        </a>
 
-  <footer>
-    <p>© 2026 Hariom Gupta</p>
-  </footer>
+        <a href="YOUR_LINK_HERE" target="_blank" class="project-link">
+          <div class="project">
+            <div>
+              <h3>Fake News Prediction</h3>
+              <p>ML-based fake news prediction model using logistic regression, pandas, NumPy, scikit-learn, and NLTK.</p>
+            </div>
+            <div class="project-footer">View Project <span>→</span></div>
+          </div>
+        </a>
+
+        <a href="YOUR_LINK_HERE" target="_blank" class="project-link">
+          <div class="project">
+            <div>
+              <h3>House Price Prediction</h3>
+              <p>Kaggle competition utilizing advanced regression techniques with XGBoost for robust data analysis.</p>
+            </div>
+            <div class="project-footer">View Project <span>→</span></div>
+          </div>
+        </a>
+
+        <a href="YOUR_LINK_HERE" target="_blank" class="project-link">
+          <div class="project">
+            <div>
+              <h3>Flipkart Web Scraper</h3>
+              <p>Extracted and analyzed e-commerce product data automatically using Python.</p>
+            </div>
+            <div class="project-footer">View Project <span>→</span></div>
+          </div>
+        </a>
+
+        <a href="YOUR_LINK_HERE" target="_blank" class="project-link">
+          <div class="project">
+            <div>
+              <h3>Penguin Slate</h3>
+              <p>A minimal, intuitive whiteboard application built for seamless creativity.</p>
+            </div>
+            <div class="project-footer">View Project <span>→</span></div>
+          </div>
+        </a>
+
+        <a href="YOUR_LINK_HERE" target="_blank" class="project-link">
+          <div class="project">
+            <div>
+              <h3>PopMe</h3>
+              <p>A pop culture news aggregator application keeping users updated with the latest trends.</p>
+            </div>
+            <div class="project-footer">View Project <span>→</span></div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: Skills & Contact -->
+  <section>
+    <div class="content-wrapper split-grid">
+      <div class="card hidden delay-1">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-container">
+          <div class="skill-badge">Python</div>
+          <div class="skill-badge">Java</div>
+          <div class="skill-badge">Machine Learning</div>
+          <div class="skill-badge">Data Visualization</div>
+          <div class="skill-badge">SQL</div>
+          <div class="skill-badge">MongoDB</div>
+          <div class="skill-badge">AWS</div>
+          <div class="skill-badge">Tableau</div>
+          <div class="skill-badge">Git & JIRA</div>
+          <div class="skill-badge">FastAPI</div>
+        </div>
+      </div>
+
+      <div class="card hidden delay-2">
+        <h2 class="section-title">Connect</h2>
+        <p style="margin-bottom: 20px; color: var(--text-muted);">Let's build something great together. Feel free to reach out for collaborations or opportunities.</p>
+        
+        <div style="display: flex; flex-direction: column; gap: 15px;">
+          <a href="mailto:guptaom244@gmail.com" class="social-link">✉️ guptaom244@gmail.com</a>
+          <a href="https://github.com/MrHariomGupta-08" target="_blank" class="social-link">🐙 GitHub Profile</a>
+          <a href="https://www.linkedin.com/in/hariom-gupta-3b38421b8/" target="_blank" class="social-link">💼 LinkedIn Network</a>
+          <a href="https://www.datascienceportfol.io/Hariom_Gupta" target="_blank" class="social-link">📊 DS Portfolio Site</a>
+        </div>
+        
+        <div style="margin-top: 40px; opacity: 0.5; font-size: 0.8rem;">
+          © 2026 Hariom Gupta. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </section>
+
 </div>
 
 <script>
@@ -269,14 +357,11 @@ const canvas = document.getElementById('bg');
 const ctx = canvas.getContext('2d');
 let particles = [];
 
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
+function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
 window.addEventListener('resize', resizeCanvas);
 resizeCanvas();
 
-for (let i = 0; i < 80; i++) {
+for (let i = 0; i < 70; i++) {
   particles.push({
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
@@ -288,8 +373,6 @@ for (let i = 0; i < 80; i++) {
 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  
-  // Check theme for particle color
   const isLight = document.body.classList.contains('light');
   ctx.fillStyle = isLight ? 'rgba(0, 102, 204, 0.4)' : 'rgba(0, 255, 213, 0.4)';
 
@@ -306,9 +389,21 @@ function draw() {
 draw();
 
 // Theme Toggle
-function toggleTheme() { 
-  document.body.classList.toggle('light'); 
-}
+function toggleTheme() { document.body.classList.toggle('light'); }
+
+// Scroll Intersection Observer for Animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    } else {
+      entry.target.classList.remove('show'); // Remove this line if you want animations to play only once
+    }
+  });
+}, { threshold: 0.1 });
+
+const hiddenElements = document.querySelectorAll('.hidden');
+hiddenElements.forEach((el) => observer.observe(el));
 </script>
 </body>
 </html>
