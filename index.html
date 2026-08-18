@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hariom Gupta | Resume</title>
+<style>
+  :root {
+    --text-main: #222222;
+    --text-muted: #555555;
+    --link-color: #0056b3;
+    --border-color: #e0e0e0;
+    --bg-main: #f4f4f6;
+    --bg-paper: #ffffff;
+    --btn-bg: #f8f9fa;
+    --btn-border: #dcdcdc;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-main);
+    background-color: var(--bg-main);
+    line-height: 1.5;
+    padding: 40px 20px;
+  }
+
+  .resume-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--bg-paper);
+    padding: 50px 60px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+    overflow: hidden; /* Prevents horizontal scrollbars on the main page */
+  }
+
+  /* Header & Contact */
+  header { text-align: center; margin-bottom: 30px; }
+  h1 { font-size: 2.2rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; color: #000; }
+  .contact-info { font-size: 0.95rem; color: var(--text-muted); }
+  .contact-info a { color: var(--link-color); text-decoration: none; margin: 0 8px; }
+  .contact-info a:hover { text-decoration: underline; }
+  .contact-separator { margin: 0 5px; color: #aaa; }
+
+  /* Section Styling */
+  section { margin-bottom: 30px; }
+  h2 {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    color: var(--text-main);
+    border-bottom: 1px solid var(--text-main);
+    padding-bottom: 4px;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  p { margin-bottom: 10px; font-size: 0.95rem; }
+  ul { padding-left: 20px; font-size: 0.9rem; color: var(--text-main); }
+  li { margin-bottom: 6px; }
+  .strong { font-weight: 600; }
+
+  /* =========================================
+     FIXED Auto-Scrolling Projects Carousel 
+     ========================================= */
+  .carousel-container {
+    display: flex;
+    overflow: hidden;
+    padding: 5px 0 15px 0;
+    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  }
+  
+  .carousel-track {
+    display: flex;
+    gap: 20px;
+  }
+
+  .carousel-group {
+    display: flex;
+    gap: 20px;
+    padding-right: 20px; /* Ensures consistent gap between groups */
+    animation: scroll 30s linear infinite;
+  }
+
+  /* Pauses animation on desktop (hover), mobile (active/tap), and keyboard focus */
+  .carousel-container:hover .carousel-group,
+  .carousel-container:active .carousel-group,
+  .carousel-container:focus-within .carousel-group {
+    animation-play-state: paused;
+  }
+
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }
+
+  .project-card {
+    width: 380px;
+    min-height: 280px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    white-space: normal;
+    flex-shrink: 0; /* Prevents cards from squishing */
+  }
+
+  .project-name { font-weight: 600; color: #000; font-size: 1.05rem; margin-bottom: 12px; }
+  .project-details { flex-grow: 1; }
+
+  /* Project Action Buttons */
+  .project-links {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .btn-link {
+    flex: 1;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid var(--btn-border);
+    color: var(--text-main);
+    background: var(--btn-bg);
+    transition: all 0.2s ease;
+  }
+
+  .btn-link:hover, .btn-link:focus {
+    background: var(--link-color);
+    color: #fff;
+    border-color: var(--link-color);
+    outline: none;
+  }
+
+  /* Grids & Lists for other sections */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px 30px;
+    font-size: 0.95rem;
+  }
+
+  .item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 5px;
+  }
+  .item-title { font-weight: 600; font-size: 1rem; color: #000; }
+  .item-date { font-size: 0.9rem; color: var(--text-muted); font-weight: 600; }
+  .item-subtitle { font-style: italic; font-size: 0.95rem; margin-bottom: 8px; color: var(--text-muted); }
+
+  @media (max-width: 768px) {
+    .resume-container { padding: 30px 20px; }
+    .item-header { flex-direction: column; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .project-card { width: 300px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="resume-container">
+  
+  <header>
+    <h1>Hariom Gupta</h1>
+    <div class="contact-info">
+      <a href="mailto:guptaom244@gmail.com">guptaom244@gmail.com</a> <span class="contact-separator">|</span>
+      <span>Mobile: 6394969055</span> <span class="contact-separator">|</span>
+      <a href="https://github.com/MrHariomGupta-08" target="_blank">github.com/MrHariomGupta-08</a>
+    </div>
+  </header>
+
+  <section>
+    <h2>Objective</h2>
+    <p>Looking for an internship or Job to gain industrial experience and training. Excited to work with professionals and to learn new work ethics.</p>
+  </section>
+
+  <!-- FIXED AUTO-SCROLLING PROJECTS SECTION -->
+  <section>
+    <h2>Projects</h2>
+    <div class="carousel-container">
+      <div class="carousel-track">
+        
+        <!-- GROUP 1: The original list of projects -->
+        <div class="carousel-group">
+          
+          <div class="project-card">
+            <div class="project-name">Automated Environmental Data Lake & Dashboard</div>
+            <div class="project-details">
+              <ul>
+                <li>Designed and implemented a Medallion Data Lake architecture.</li>
+                <li>Built and automated the API data ingestion pipeline using GitHub Actions.</li>
+                <li>Created an end-to-end ETL workflow for data cleaning and aggregation.</li>
+                <li>Developed a reactive frontend dashboard using Streamlit and Plotly.</li>
+              </ul>
+            </div>
+            <div class="project-links">
+              <a href="YOUR_GITHUB_LINK_HERE" target="_blank" class="btn-link">GitHub</a>
+              <a href="YOUR_LIVE_LINK_HERE" target="_blank" class="btn-link">Live Link</a>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-name">Real-Time Sentiment Analysis Dashboard</div>
+            <div class="project-details">
+              <ul>
+                <li>Designed and implemented the NLP preprocessing workflow.</li>
+                <li>Built and optimized the sentiment classification model.</li>
+                <li>Created an end-to-end ML pipeline for training and prediction.</li>
+                <li>Evaluated model performance using accuracy, precision, recall, and F1-score.</li>
+              </ul>
+            </div>
+            <div class="project-links">
+              <a href="YOUR_GITHUB_LINK_HERE" target="_blank" class="btn-link">GitHub</a>
+              <a href="YOUR_LIVE_LINK_HERE" target="_blank" class="btn-link">Live Link</a>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-name">Fake News Prediction</div>
+            <div class="project-details">
+              <ul>
+                <li>Developed a ML based fake news prediction model using logistic regression for accurate misinformation detection.</li>
+                <li>Achieved robust fake news classification with a logistic regression approach in Python.</li>
+                <li>Used libraries like pandas, numpy, scikit-learn, nltk.</li>
+              </ul>
+            </div>
+            <div class="project-links">
+              <a href="YOUR_GITHUB_LINK_HERE" target="_blank" class="btn-link">GitHub</a>
+              <a href="YOUR_LIVE_LINK_HERE" target="_blank" class="btn-link">Live Link</a>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-name">House Price Prediction (Kaggle)</div>
+            <div class="project-details">
+              <ul>
+                <li>Developed a Python-based house price prediction model leveraging NumPy, Pandas, Matplotlib, Seaborn, and XGBoost.</li>
+                <li>Implemented model persistence using Pickle to enable easy storage and retrieval of trained models.</li>
+              </ul>
+            </div>
+            <div class="project-links">
+              <a href="YOUR_GITHUB_LINK_HERE" target="_blank" class="btn-link">GitHub</a>
+              <a href="YOUR_LIVE_LINK_HERE" target="_blank" class="btn-link">Live Link</a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- GROUP 2: An exact clone of Group 1 for the infinite loop to work seamlessly -->
+        <div class="carousel-group" aria-hidden="true">
+          
+          <div class="project-card">
+            <div class="project-name">Automated Environmental Data Lake & Dashboard</div>
+            <div class="project-details">
+              <ul>
+                <li>Designed and implemented a Medallion Data Lake architecture.</li>
+                <li>Built and automated the API data ingestion pipeline using GitHub Actions.</li>
+                <li>Created an end-to-end ETL workflow for data cleaning and aggregation.</li>
+                <li>Developed a reactive frontend dashboard using Streamlit and Plotly.</li>
+              </ul>
+            </div>
+            <div class="project-links">
+              <a href="YOUR_GITHUB_LINK_HERE" target="_blank" class="btn-link">GitHub</a>
+              <a href="YOUR_LIVE_LINK_HERE" target="_blank" class="btn-link">Live Link</a>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-name">Real-Time Sentiment Analysis Dashboard</div>
+            <div class="project-details">
+              <ul>
+                <li>Designed and implemented the NLP preprocessing workflow.</li>
+                <li>Built and optimized the sentiment classification model.</li>
+                <li>Created an end-to-end ML pipeline for training and prediction.</li>
+                <li>Evaluated model performance using accuracy, precision, recall, and F1-score.</li>
+              </ul>
+            </div>
+            <div class="project-links">
+              <a href="YOUR_GITHUB_LINK_HERE" target="_blank" class="btn-link">GitHub</a>
+              <a href="YOUR_LIVE_LINK_HERE" target="_blank" class="btn-link">Live Link</a>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-name">Fake News Prediction</div>
+            <div class="project-details">
+              <ul>
+                <li>Developed a ML based fake news prediction model using logistic regression for accurate misinformation detection.</li>
+                <li>Achieved robust fake news classification with a logistic regression approach in Python.</li>
+                <li>Used libraries like pandas, numpy, scikit-learn, nltk.</li>
+              </ul>
+            </div>
+            <div class="project-links">
+              <a href="YOUR_GITHUB_LINK_HERE" target="_blank" class="btn-link">GitHub</a>
+              <a href="YOUR_LIVE_LINK_HERE" target="_blank" class="btn-link">Live Link</a>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-name">House Price Prediction (Kaggle)</div>
+            <div class="project-details">
+              <ul>
+                <li>Developed a Python-based house price prediction model leveraging NumPy, Pandas, Matplotlib, Seaborn, and XGBoost.</li>
+                <li>Implemented model persistence using Pickle to enable easy storage and retrieval of trained models.</li>
+              </ul>
+            </div>
+            <div class="project-links">
+              <a href="YOUR_GITHUB_LINK_HERE" target="_blank" class="btn-link">GitHub</a>
+              <a href="YOUR_LIVE_LINK_HERE" target="_blank" class="btn-link">Live Link</a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div>
+        <p><span class="strong">Technical Skills:</span></p>
+        <ul>
+          <li>Python, Core JAVA (Basic)</li>
+          <li>Machine Learning & Data Visualization</li>
+          <li>SQL, MongoDB</li>
+          <li>AWS, Tableau</li>
+          <li>Version Control - Git, JIRA</li>
+        </ul>
+      </div>
+      <div>
+        <p><span class="strong">Interpersonal Skills:</span></p>
+        <ul>
+          <li>Flexible with technology</li>
+          <li>Passionate for Research & Organizational Skills</li>
+          <li>Conflict management and negotiation</li>
+          <li>Effective Communication and Leadership</li>
+          <li>Good Analytical and logical thinking</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Training & Certifications</h2>
+    <ul>
+      <li><span class="strong">2023:</span> DA & Advance ML Intern and technical Trainee - MSME</li>
+      <li><span class="strong">2023:</span> Certificate from CDAC in Big Data Technology - Nasscom</li>
+      <li><span class="strong">2023:</span> Basic Map Reduce (Great Learning)</li>
+      <li><span class="strong">2023:</span> Data Analysis With R programming - Coursera</li>
+      <li><span class="strong">2022:</span> Data Analytics with AWS - Coursera</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Education</h2>
+    
+    <div style="margin-bottom: 15px;">
+      <div class="item-header">
+        <span class="item-title">Post Graduation Certificate In Big Data Technologies</span>
+        <span class="item-date">Feb 2026 - August 2026</span>
+      </div>
+      <div class="item-subtitle">CDAC Bengaluru</div>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <div class="item-header">
+        <span class="item-title">B.tech in CSE (Data Science)</span>
+        <span class="item-date">2020 - 2024</span>
+      </div>
+      <div class="item-subtitle">RKGIT, Ghaziabad affiliated with AKTU — 7.4 CGPA</div>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <div class="item-header">
+        <span class="item-title">Intermediate</span>
+        <span class="item-date">2020</span>
+      </div>
+      <div class="item-subtitle">D.A.V. Inter College, Mahoba (State Board) — 74.8%</div>
+    </div>
+
+    <div>
+      <div class="item-header">
+        <span class="item-title">High School</span>
+        <span class="item-date">2018</span>
+      </div>
+      <div class="item-subtitle">S.S. Niketan High School, Mahoba (State Board) — 78%</div>
+    </div>
+  </section>
+
+</div>
+
+</body>
+</html>
